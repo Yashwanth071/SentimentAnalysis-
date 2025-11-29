@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Analysis Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 0 16px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-top: 24px;
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 14px;
+            resize: vertical;
+        }
+        button {
+            margin-top: 12px;
+            padding: 10px 18px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 24px;
+            padding: 16px;
+            background-color: #ffffff;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+        .label-positive {
+            color: green;
+            font-weight: bold;
+        }
+        .label-negative {
+            color: red;
+            font-weight: bold;
+        }
+        .prob {
+            font-size: 13px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sentiment Analysis Project</h1>
+    <p>Enter a customer review below and click <strong>Analyze</strong> to see if it is positive or negative.</p>
+
+    <form method="POST">
+        <textarea name="review_text" placeholder="Type or paste your review here...">{{ input_text }}</textarea>
+        <br>
+        <button type="submit">Analyze Sentiment</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        <p>Predicted sentiment:
+            {% if prediction == "Positive review" %}
+                <span class="label-positive">{{ prediction }}</span>
+            {% else %}
+                <span class="label-negative">{{ prediction }}</span>
+            {% endif %}
+        </p>
+        {% if probability is not none %}
+        <p class="prob">Model confidence: {{ '%.4f'|format(probability) }}</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</body>
+</html>
