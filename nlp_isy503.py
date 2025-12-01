@@ -1,9 +1,9 @@
 #installing necessary python packages and importing 
 
-!pip install bs4 lxml 
+"""!pip install bs4 lxml 
 !pip install tensorflow
 !pip install numpy 
-!pip install pandas
+!pip install pandas"""
 
 import os
 import re
@@ -22,7 +22,7 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras import layers, models
 
-print("TensorFlow version:", tf._version_)
+print("TensorFlow version:", tf.__version__)
 
 ROOT_DIR = "domain_sentiment_data/sorted_data_acl"  
 print("Root exists:", os.path.exists(ROOT_DIR))
