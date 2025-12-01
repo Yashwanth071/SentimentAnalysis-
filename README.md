@@ -1,95 +1,150 @@
-________________________________________
-SentimentAnalysis — ISY503 Final Project (NLP Sentiment Analysis)
-Project: ISY503 — Final Project (Assessment 3)
-Group: Yashwanth, Tharun, Vani, Annudogu
-Repository: https://github.com/Yashwanth071/SentimentAnalysis-.git
-________________________________________
-Overview
-This repository contains an end-to-end NLP sentiment analysis project built for ISY503. The project:
 
-●	Uses the JHU multi-domain Amazon reviews dataset (books, dvd, electronics, kitchen & housewares).
+# **SentimentAnalysis — ISY503 Final Project (NLP Sentiment Analysis)**
 
-●	Implements a BiLSTM-based sentiment classifier (binary positive/negative).
+**Project:** ISY503 — Final Project (Assessment 3)
+**Group:** Yashwanth, Tharun, Vani, Annudogu
 
-●	Provides preprocessing, training and evaluation notebooks/scripts.
+**Repository:** [https://github.com/Yashwanth071/SentimentAnalysis-.git](https://github.com/Yashwanth071/SentimentAnalysis-.git)
 
-●	Provides a simple Flask web app (app.py + templates/index.html) to demo the model with a text box that outputs "Positive review" or "Negative review" and a confidence score.
+---
 
-The final deliverable includes code, a saved model and tokenizer, presentation slides, and individual reports.
-________________________________________
-Repo structure (key files)
+## **📌 Overview**
+
+This repository contains an end-to-end **NLP Sentiment Analysis** project developed for ISY503. The project:
+
+* Uses the **JHU multi-domain Amazon reviews dataset** (Books, DVD, Electronics, Kitchen & Housewares).
+* Implements a **BiLSTM-based sentiment classifier** for binary classification (Positive/Negative).
+* Includes **data preprocessing**, **model training**, **evaluation**, and **inference scripts**.
+* Features a **Flask web app** (`app.py`) with a simple input interface (`index.html`) to classify user-provided reviews with sentiment label and confidence score.
+
+The final deliverables include:
+✔ Complete codebase
+✔ Trained model (`sentiment_model.h5`) and tokenizer
+✔ Flask web demo
+✔ Presentation slides
+✔ Individual reports
+
+---
+
+## **📁 Repository Structure**
+
+```
 SentimentAnalysis-/
-├─ app.py                     # Flask web app (backend)
+├─ app.py                     # Flask web application (backend)
 ├─ templates/
-│  └─ index.html              # Frontend UI 
-├─ sentiment_model.h5         # Saved Keras model 
-├─ tokenizer.json             # Keras Tokenizer serialized
-├─ nlp_isy503.py              # Training / data-prep script 
-├─ README.md                  
+│  └─ index.html              # Frontend UI template
+├─ sentiment_model.h5         # Saved trained Keras model
+├─ tokenizer.json             # Serialized Keras tokenizer
+├─ nlp_isy503.py              # Data preprocessing & model training script
+├─ README.md                  # Project documentation
+```
 
+---
 
-________________________________________
-Quick results (from local run)
+## **🧪 Sample Prediction Results** (From Local Execution)
 
-●	Example inference outputs:
+| Input Review Example                                         | Predicted Sentiment | Confidence Score |
+| ------------------------------------------------------------ | ------------------- | ---------------- |
+| *This product was amazing, I loved it and will buy again!*   | Positive            | 0.9887           |
+| *Terrible quality, completely useless and a waste of money.* | Negative            | 0.0004           |
+| *It was okay. Not great, not terrible, just average.*        | Negative            | 0.0020           |
 
-○	This product was amazing, I loved it and will buy again! → Positive review (score ≈ 0.9887)
+---
 
-○	Terrible quality, completely useless and a waste of money. → Negative review (score ≈ 0.0)
+## **🛠 Requirements**
 
-○	It was okay. Not great, not terrible, just average. → Negative review (score ≈ 0.002)
+### **▶ Create and activate virtual environment (Recommended)**
 
-________________________________________
-Requirements
-Create and use a virtual environment (recommended).
-# Create venv
+```bash
+# Create virtual environment
 python -m venv .venv
-# Activate
-.venv\Scripts\Activate.ps1   # PowerShell
-# or
-.venv\Scripts\activate.bat   # cmd.exe
 
-Install packages (example):
-pip install tensorflow bs4 lxml numpy pandas scikit-learn matplotlib jupyter
+# Activate (PowerShell)
+.venv\Scripts\Activate.ps1
 
-Dataset
-This project uses the JHU domain sentiment dataset. 
+# Activate (CMD)
+.venv\Scripts\activate.bat
+```
 
-If you need to download the dataset manually, you can find it from the JHU NLP distributions (search for "domain sentiment dataset JHU" online) and extract it.
+### **▶ Install dependencies**
 
-This project uses the JHU domain sentiment dataset. 
-Total samples loaded: 8000 (2000 per domain; balanced positive/negative)
-Train / Val / Test split: 5599 / 1200 / 1200
-dataset folder contains books, dvd, electronics, kitchen_&_housewares subfolders each containing positive.review and negative.review.
-________________________________________
+```bash
+pip install tensorflow bs4 lxml numpy pandas scikit-learn matplotlib jupyter flask
+```
 
-________________________________________
-**How to run the Flask demo locally**
-1. Prepare dataset: ensure domain_sentiment_data or the dataset folder is present and contains books, dvd, electronics, kitchen_&_housewares subfolders each containing positive.review and negative.review.
-2. Ensure sentiment_model.h5 and tokenizer.json are in the same folder as app.py (update the paths in app.py & nlp_isy503.py).
-3. python run nlp_isy503.py
-4. python run app.py
-5. click on http://127.0.0.1:5000 or open it in browser
-6. Enter review text.
-7. Click Analyze to get result
-________________________________________
+---
 
-Team Contributions (for Assessment / Report)
+## **📂 Dataset Details**
 
-●	Yashwanth — UI, index.html, commit ,fixes minor issues & repo maintenance — 25%
+This project uses the **JHU Domain Sentiment Dataset**, containing balanced positive and negative reviews across **four domains**:
 
-●	Tharun — Data parsing, cleaning, preprocessing, tokenizer — 25%
+📌 Domains included:
+📘 Books | 💿 DVD | 💻 Electronics | 🍽 Kitchen & Housewares
 
-●	Vani — Model architecture (BiLSTM), training, evaluation — 25%
+**Dataset Structure** (inside `dataset/` or `domain_sentiment_data/`):
 
-●	Annudogu — Flask backend finalization, integration, deployment testing — 25%
-________________________________________
-References (select):
-●	Blitzer, J., Dredze, M., & Pereira, F. (2007). Biographies and multi-domain sentiment dataset (JHU domain sentiment dataset).
+```
+books/
+ ├─ positive.review
+ └─ negative.review
+dvd/
+ ├─ positive.review
+ └─ negative.review
+electronics/
+ ├─ positive.review
+ └─ negative.review
+kitchen_&_housewares/
+ ├─ positive.review
+ └─ negative.review
+```
 
-●	Gebru, T., et al. (2018). Datasheets for Datasets.
+**Data Summary:**
 
-●	Mitchell, M., et al. (2019). Model Cards for Model Reporting.
+* Total Samples: 8000 (2000 per domain)
+* Balanced labels: Positive / Negative
+* Train / Validation / Test Split: **5599 / 1200 / 1200**
 
+---
 
+## **🚀 How to Run the Flask Demo Locally**
+
+1️⃣ Place the dataset folder (`domain_sentiment_data/`) properly with all domain folders.
+2️⃣ Ensure `sentiment_model.h5` and `tokenizer.json` are in the same directory as `app.py`.
+3️⃣ Train or load the model:
+
+```bash
+python nlp_isy503.py
+```
+
+4️⃣ Run the Flask app:
+
+```bash
+python app.py
+```
+
+5️⃣ Open in browser:
+🔗 [http://127.0.0.1:5000](http://127.0.0.1:5000)
+6️⃣ Enter a review text
+7️⃣ Click **Analyze** to see sentiment and confidence score
+
+---
+
+## **👥 Team Contributions (Assessment Purpose)**
+
+| Team Member | Contribution                                                    | Percentage |
+| ----------- | --------------------------------------------------------------- | ---------- |
+| Yashwanth   | UI Design, `index.html`, commits, fixes, repository management  | 25%        |
+| Tharun      | Data parsing, cleaning, preprocessing, tokenizer implementation | 25%        |
+| Vani        | Model architecture (BiLSTM), training, evaluation               | 25%        |
+| Annudogu    | Flask backend, integration, deployment testing                  | 25%        |
+
+---
+
+## **📚 References**
+
+* Blitzer, J., Dredze, M., & Pereira, F. (2007). *Biographies and multi-domain sentiment dataset (JHU dataset).*
+* Gebru, T., et al. (2018). *Datasheets for Datasets.*
+* Mitchell, M., et al. (2019). *Model Cards for Model Reporting.*
+
+---
 
