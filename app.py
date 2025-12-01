@@ -14,8 +14,9 @@ import os
 # -----------------------------
 
 # Path 
-MODEL_PATH = "sentiment_model\sentiment_model.h5"
-TOKENIZER_PATH = "sentiment_model\tokenizer.json"
+MODEL_PATH = os.path.join("sentiment_model", "sentiment_model.h5")
+TOKENIZER_PATH = os.path.join("sentiment_model", "tokenizer.json")
+
 
 # This value should match training value
 MAX_SEQ_LEN = 200
